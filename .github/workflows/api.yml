@@ -1,0 +1,40 @@
+name: API
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ["1.20.4"]
+    name: Go ${{ matrix.go }} run
+    steps:
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      - name: Setup go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Get dependencies
+        run: |
+          export PATH=${PATH}:`go env GOPATH`/bin
+          make install_revive
+
+      - name: Run make ci
+        run: |
+          export PATH=${PATH}:`go env GOPATH`/bin
+          git submodule update
+          go get -t .
+          go generate ./...
+          make ci
+          make integration
+          git status
+          git diff > diff.log
+          cat diff.log
+          git clean -fd
+          git reset --hard
+          make verify
