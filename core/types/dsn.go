@@ -8,7 +8,7 @@ package types
 import (
 	"fmt"
 
-	"github.com/clivern/sloth/core/utils"
+	"github.com/norwik/sloth/core/utils"
 )
 
 // DSN struct

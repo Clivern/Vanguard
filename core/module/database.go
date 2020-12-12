@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/clivern/sloth/core/migration"
-	"github.com/clivern/sloth/core/types"
+	"github.com/norwik/sloth/core/migration"
+	"github.com/norwik/sloth/core/types"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"

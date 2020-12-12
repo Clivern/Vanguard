@@ -5,7 +5,7 @@
 package controller
 
 import (
-	"github.com/clivern/sloth/core/module"
+	"github.com/norwik/sloth/core/module"
 )
 
 // Context type

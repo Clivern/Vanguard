@@ -1,4 +1,4 @@
-module github.com/clivern/sloth
+module github.com/norwik/sloth
 
 go 1.20
 

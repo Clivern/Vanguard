@@ -15,10 +15,10 @@ var config string
 
 var rootCmd = &cobra.Command{
 	Use: "sloth",
-	Short: `🐺 A Fast, Secure and Reliable Self Hosted Monitoring and Status Page System, Set up in Minutes.
+	Short: `🐺 A Lightweight and Reliable Large Language Model System, Set up in Minutes.
 
 If you have any suggestions, bug reports, or annoyances please report
-them to our issue tracker at <https://github.com/clivern/sloth/issues>`,
+them to our issue tracker at <https://github.com/norwik/sloth/issues>`,
 }
 
 // Execute runs cmd tool

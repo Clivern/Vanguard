@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/clivern/sloth/pkg"
+	"github.com/norwik/sloth/pkg"
 
 	"github.com/franela/goblin"
 )

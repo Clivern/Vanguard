@@ -15,9 +15,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/clivern/sloth/core/controller"
-	"github.com/clivern/sloth/core/module"
-	"github.com/clivern/sloth/core/service"
+	"github.com/norwik/sloth/core/controller"
+	"github.com/norwik/sloth/core/module"
+	"github.com/norwik/sloth/core/service"
 
 	"github.com/drone/envsubst"
 	"github.com/labstack/echo-contrib/prometheus"

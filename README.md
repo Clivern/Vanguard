@@ -3,19 +3,19 @@
     <h3 align="center">Sloth</h3>
     <p align="center">🐺 A Lightweight and Reliable Large Language Model System, Set up in Minutes.</p>
     <p align="center">
-        <a href="https://github.com/clivern/sloth/actions/workflows/api.yml">
-            <img src="https://github.com/clivern/sloth/actions/workflows/api.yml/badge.svg">
+        <a href="https://github.com/norwik/sloth/actions/workflows/api.yml">
+            <img src="https://github.com/norwik/sloth/actions/workflows/api.yml/badge.svg">
         </a>
-        <a href="https://github.com/clivern/sloth/releases">
+        <a href="https://github.com/norwik/sloth/releases">
             <img src="https://img.shields.io/badge/Version-v0.1.0-yellow.svg">
         </a>
-        <a href="https://goreportcard.com/report/github.com/clivern/sloth">
-            <img src="https://goreportcard.com/badge/github.com/clivern/sloth?v=0.1.0">
+        <a href="https://goreportcard.com/report/github.com/norwik/sloth">
+            <img src="https://goreportcard.com/badge/github.com/norwik/sloth?v=0.1.0">
         </a>
-        <a href="https://godoc.org/github.com/clivern/sloth">
-            <img src="https://godoc.org/github.com/clivern/sloth?status.svg">
+        <a href="https://godoc.org/github.com/norwik/sloth">
+            <img src="https://godoc.org/github.com/norwik/sloth?status.svg">
         </a>
-        <a href="https://github.com/clivern/sloth/blob/main/LICENSE">
+        <a href="https://github.com/norwik/sloth/blob/main/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
         </a>
     </p>
@@ -28,10 +28,10 @@ To install `Sloth`, Use the following script:
 
 ```zsh
 # To install sloth
-$ bash < <(curl -s https://raw.githubusercontent.com/clivern/sloth/main/deployment/ubuntu/install.sh)
+$ bash < <(curl -s https://raw.githubusercontent.com/norwik/sloth/main/deployment/ubuntu/install.sh)
 
 # To upgrade sloth
-$ bash < <(curl -s https://raw.githubusercontent.com/clivern/sloth/main/deployment/ubuntu/upgrade.sh)
+$ bash < <(curl -s https://raw.githubusercontent.com/norwik/sloth/main/deployment/ubuntu/upgrade.sh)
 ```
 
 
@@ -39,12 +39,12 @@ $ bash < <(curl -s https://raw.githubusercontent.com/clivern/sloth/main/deployme
 
 For transparency into our release cycle and in striving to maintain backward compatibility, Sloth is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
-See the [Releases section of our GitHub project](https://github.com/clivern/sloth/releases) for changelogs for each release version of Sloth. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clivern/sloth/milestones) for the future roadmap.
+See the [Releases section of our GitHub project](https://github.com/norwik/sloth/releases) for changelogs for each release version of Sloth. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/norwik/sloth/milestones) for the future roadmap.
 
 
 ### Bug tracker
 
-If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clivern/sloth/issues
+If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/norwik/sloth/issues
 
 
 ### Security Issues

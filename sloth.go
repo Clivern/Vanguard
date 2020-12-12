@@ -6,7 +6,7 @@
 package main
 
 import (
-	"github.com/clivern/sloth/cmd"
+	"github.com/norwik/sloth/cmd"
 )
 
 var (

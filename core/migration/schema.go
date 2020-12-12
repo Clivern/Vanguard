@@ -8,7 +8,7 @@ package migration
 import (
 	"time"
 
-	"github.com/clivern/sloth/core/utils"
+	"github.com/norwik/sloth/core/utils"
 
 	"github.com/jinzhu/gorm"
 )
