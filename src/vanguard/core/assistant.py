@@ -21,9 +21,5 @@
 # SOFTWARE.
 
 
-class AssistantCommand:
-    def __init__(self):
-        pass
-
-    def run(self):
-        pass
+class Assistant:
+    pass
