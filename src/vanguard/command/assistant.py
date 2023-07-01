@@ -22,7 +22,6 @@
 
 
 class AssistantCommand:
-
     def __init__(self):
         pass
 

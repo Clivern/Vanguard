@@ -20,27 +20,59 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
 import logging
 
 
 class Logger:
-    """Logger Class"""
+    """Custom logger class with configurable handlers."""
 
     loggers = {}
 
+    def __init__(self):
+        """Initialize logger with environment-based configuration."""
+        self.log_level = os.environ.get("APP_LOGGING_LEVEL", "info").upper()
+        self.log_handlers = (
+            os.environ.get("APP_LOGGING_HANDLERS", "console").lower().split(",")
+        )
+
     def get_logger(self, name=__name__):
-        """
-        Get logger instance by name
+        """Get or create a logger instance.
 
         Args:
-            name: logger identifier
+            name (str): Logger name (default: calling module's name).
 
         Returns:
-            An instance of logging.Logger
+            logging.Logger: Configured logger instance.
         """
-        if name in self.loggers:
-            return self.loggers[name]
-
-        self.loggers[name] = logging.getLogger(name)
-
+        if name not in self.loggers:
+            logger = logging.getLogger(name)
+            logger.setLevel(self._get_log_level())
+            if not logger.handlers:
+                self._setup_handlers(logger)
+            self.loggers[name] = logger
         return self.loggers[name]
+
+    def _get_log_level(self):
+        """Get logging level from environment or default to INFO."""
+        return getattr(logging, self.log_level, logging.INFO)
+
+    def _setup_handlers(self, logger):
+        """Set up logging handlers based on configuration."""
+        if "console" in self.log_handlers:
+            console_handler = logging.StreamHandler()
+            console_handler.setFormatter(
+                logging.Formatter(
+                    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+                )
+            )
+            logger.addHandler(console_handler)
+
+
+def get_logger() -> Logger:
+    """Create and return a logger instance for the calling module.
+
+    Returns:
+        logging.Logger: Configured logger instance.
+    """
+    return Logger().get_logger(__name__)

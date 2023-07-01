@@ -22,7 +22,6 @@
 
 
 class AlertCommand:
-
     def __init__(self):
         pass
 

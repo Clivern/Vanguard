@@ -20,33 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import click
 
-from vanguard import __version__
-from vanguard.command import LoadCommand, AlertCommand, AssistantCommand
+class ConfigCommand:
+    def __init__(self):
+        pass
 
-
-@click.group(help="🐺 Oncall AI Assistant.")
-@click.version_option(version=__version__, help="Show the current version")
-def main():
-    """Main command group for Vanguard CLI."""
-    pass
-
-
-@main.command(help="Load documentation into the RAG")
-def load(name):
-    LoadCommand().run(name)
-
-
-@main.command(help="Run the AI Assistant")
-def assistant():
-    AssistantCommand().run()
-
-
-@main.command(help="Send a PagerDuty Alert")
-def alert():
-    AlertCommand().run()
-
-
-if __name__ == "__main__":
-    main()
+    def run(self):
+        pass
