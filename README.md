@@ -1,4 +1,0 @@
-### Vanguard
-
-OnCall AI Assistant
-
