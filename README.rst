@@ -10,5 +10,13 @@ Vanguard
 
 OnCall AI Assistant, Your Intelligent Incident Resolution Partner!
 
-Vanguard is a cutting-edge troubleshooting companion that revolutionizes the incident resolution process. By leveraging team documentation and learning from past incident responses, it provides tailored, context-aware support for swift problem-solving.
+Meet OnCall AI Assistant, your friendly helper for tackling incidents quickly and efficiently. This smart tool makes resolving issues a breeze by tapping into your team's documents and learning from past incidents.
+
+Features:
+
+* Smart Insights: It uses your team's knowledge base to provide solutions that fit your unique workflows and practices.
+* Learn from the Past: By looking at how previous incidents were handled, it suggests tried-and-true methods to solve current problems.
+* Easy Recommendations: OnCall AI combines real-time data with historical context to give you straightforward advice tailored to your situation.
+* Keeps Getting Better: With every incident it helps resolve, it learns and improves, so it's always ready to assist your team more effectively.
+* Works with Your Tools: It integrates smoothly with what you already use, enhancing your team's skills without replacing them.
 
