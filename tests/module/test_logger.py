@@ -22,12 +22,11 @@
 
 import logging
 import pytest
-from txy.module.logger import Logger
+from vanguard.module import get_logger
 
 
 def test_logger():
     """Logger Tests"""
-    logger = Logger()
-    result = logger.get_logger()
+    result = get_logger()
 
     assert isinstance(result, logging.Logger) == True
