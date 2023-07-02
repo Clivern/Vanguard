@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import uuid
 import sqlite3
 from typing import List, Dict, Any
 
@@ -48,14 +49,70 @@ class Database:
     def migrate(self) -> None:
         """Create necessary tables if they don't exist."""
         cursor = self._connection.cursor()
+
         cursor.execute(
             "CREATE TABLE IF NOT EXISTS document (id TEXT, content TEXT, meta TEXT, team TEXT, createdAt TEXT, updatedAt TEXT)"
         )
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS alert (id TEXT, alert TEXT, meta TEXT, team TEXT, createdAt TEXT, updatedAt TEXT)"
+            "CREATE TABLE IF NOT EXISTS alert (id TEXT, summary TEXT, meta TEXT, team TEXT, createdAt TEXT, updatedAt TEXT)"
         )
+
         cursor.close()
         self._connection.commit()
+
+    def insert_document(self, document: Dict[str, Any]) -> int:
+        """Insert a new document
+
+        Args:
+            document (Dict): The document data
+
+        Returns:
+            The total rows inserted
+        """
+        cursor = self._connection.cursor()
+
+        result = cursor.execute(
+            "INSERT INTO document VALUES (?, ?, ?, ?, datetime('now'), datetime('now'))",
+            (
+                document.get("id", str(uuid.uuid4())),
+                document.get("content"),
+                document.get("meta", "{}"),
+                document.get("team"),
+            ),
+        )
+
+        cursor.close()
+
+        self._connection.commit()
+
+        return result.rowcount
+
+    def insert_alert(self, alert: Dict[str, Any]) -> int:
+        """Insert a new alert
+
+        Args:
+            alert (Dict): The alert data
+
+        Returns:
+            The total rows inserted
+        """
+        cursor = self._connection.cursor()
+
+        result = cursor.execute(
+            "INSERT INTO alert VALUES (?, ?, ?, ?, datetime('now'), datetime('now'))",
+            (
+                alert.get("id", str(uuid.uuid4())),
+                alert.get("summary"),
+                alert.get("meta", "{}"),
+                alert.get("team"),
+            ),
+        )
+
+        cursor.close()
+
+        self._connection.commit()
+
+        return result.rowcount
 
     def delete_document(self, id: str) -> None:
         """Delete a document by its ID.
@@ -116,7 +173,9 @@ class Database:
         cursor.close()
 
         return (
-            dict(zip(["id", "alert", "meta", "team", "createdAt", "updatedAt"], result))
+            dict(
+                zip(["id", "summary", "meta", "team", "createdAt", "updatedAt"], result)
+            )
             if result
             else None
         )
@@ -155,7 +214,7 @@ class Database:
         cursor.close()
 
         return [
-            dict(zip(["id", "alert", "meta", "team", "createdAt", "updatedAt"], row))
+            dict(zip(["id", "summary", "meta", "team", "createdAt", "updatedAt"], row))
             for row in results
         ]
 
