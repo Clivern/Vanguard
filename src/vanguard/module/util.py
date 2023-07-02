@@ -20,41 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
-from vanguard.module import (
-    get_logger,
-    get_database_client,
-    get_openai_client,
-    get_pagerduty_client,
-    get_qdrant_client,
-    get_file_system,
-    success,
-    error,
-)
-from vanguard.core import get_mind
+from rich.console import Console
 
 
-class LoadCommand:
+def success(message: str):
     """
-    Load Team Documentation into RAG Command
+    Print a success message with green formatting.
+
+    Args:
+        message (str): The success message to be printed.
     """
+    Console().print(f"[bold green][SUCCESS][/bold green] {message}")
 
-    def __init__(self):
-        self._mind = get_mind(
-            get_database_client(os.getenv("SQLITE_DB_PATH")),
-            get_qdrant_client(
-                os.getenv("QDRANT_DB_URL"), os.getenv("QDRANT_DB_API_KEY")
-            ),
-            get_openai_client(os.getenv("OPENAI_API_KEY")),
-            get_pagerduty_client(os.getenv("PAGERDUTY_INTEGRATION_KEY")),
-            get_logger(),
-            get_file_system(),
-        )
 
-    def run(self, dir_path: str, team_name: str):
-        try:
-            self._mind.setup()
-            self._mind.store_documents(dir_path, team_name, {})
-            success("Documentation loaded successfully!")
-        except Exception as e:
-            error(f"raised error is {e}")
+def error(message: str):
+    """
+    Print an error message with red formatting.
+
+    Args:
+        message (str): The error message to be printed.
+    """
+    Console().print(f"[bold red][ERROR][/bold red] {message}")
