@@ -90,10 +90,7 @@ class Mind:
         content using OpenAI, and stores both the documents and their embeddings in the database
         and Qdrant respectively.
         """
-        documents = self._file_system.read_documents_from_directory(
-            path, team, [".txt", ".md"]
-        )
-
+        documents = self._file_system.read_documents_from_directory(path, [".txt", ".md"])
         ids = []
         embeddings = []
         metas = []
