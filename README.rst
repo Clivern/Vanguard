@@ -24,9 +24,11 @@ Features:
 * Keeps Getting Better: With every incident it helps resolve, it learns and improves, so it's always ready to assist your team more effectively.
 * Works with Your Tools: It integrates smoothly with what you already use, enhancing your team's skills without replacing them.
 
-Usage:
 
-* First you need to load the following environment variables
+Usage:
+------
+
+* First you need to load the following environment variables.
 
 .. code-block::
 
@@ -34,5 +36,19 @@ Usage:
       export QDRANT_DB_URL=....
       export QDRANT_DB_API_KEY=....
       export PAGERDUTY_INTEGRATION_KEY=....
-      export SQLITE_DB_PATH=....
+      export SQLITE_DB_PATH=/root/vanguard.db
+
+
+* Load The team documents.
+
+.. code-block::
+
+      $ vanguard load --dir_path /root/vanguard/testdocs --team_name clivern
+
+
+* Trigger a Pagerduty Alert.
+
+.. code-block::
+
+      $ vanguard alert --summary "Host clivern.ams01 is down" --severity critical --team clivern
 
