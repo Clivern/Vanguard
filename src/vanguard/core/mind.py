@@ -72,6 +72,7 @@ class Mind:
         necessary connections are established and collections are available.
         """
         self._database_client.connect()
+        self._database_client.migrate()
         self._qdrant_client.create_collection_if_not_exist("vanguard")
 
     def store_documents(self, path: str, team: str, meta: Dict[str, Any]) -> bool:
