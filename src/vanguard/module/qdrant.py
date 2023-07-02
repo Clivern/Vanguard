@@ -49,16 +49,27 @@ class Qdrant:
                 vectors_config=VectorParams(size=size, distance=Distance.COSINE),
             )
 
-    def insert(self, collection: str, points: list):
+    def insert(self, collection: str, embeddings: list, ids: list, payloads: list):
         """Insert points into a collection.
 
         Args:
             collection (str): Collection name.
-            points (list): List of points to insert.
+            embeddings (list): List of embeddings to insert.
+            ids (list): List of IDs corresponding to each embedding.
+            payloads (list): List of payloads corresponding to each embedding.
 
         Returns:
             API response for the upsert operation.
         """
+        if len(embeddings) != len(ids) or len(embeddings) != len(payloads):
+            raise ValueError("Length of embeddings, ids, and payloads must match.")
+
+        # Create a list of PointStruct instances internally
+        points = [
+            models.PointStruct(id=ids[i], vector=embeddings[i], payload=payloads[i])
+            for i in range(len(embeddings))
+        ]
+
         return self._client.upsert(collection, points)
 
     def search(self, collection, query_vector, metadata={}, limit=1):
