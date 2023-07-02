@@ -95,6 +95,10 @@ class FileSystem:
         return md5_hash.hexdigest()
 
 
+def get_file_system() -> FileSystem:
+    return FileSystem()
+
+
 if __name__ == "__main__":
     fs = FileSystem()
     print(

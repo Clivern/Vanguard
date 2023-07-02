@@ -118,14 +118,11 @@ class Mind:
 
         return True
 
-    def trigger_alert(
-        self, id: str, summary: str, team: str, meta: Dict[str, Any]
-    ) -> str:
+    def trigger_alert(self, summary: str, team: str, meta: Dict[str, Any]) -> str:
         """
         Trigger an alert in PagerDuty and store it in the local database.
 
         Args:
-            id (str): The ID of the alert. A new ID will be generated if not provided.
             summary (str): A brief summary of the alert.
             team (str): The team associated with this alert.
             meta (Dict[str, Any]): Additional metadata related to the alert.
@@ -301,3 +298,24 @@ class Mind:
         OpenAI's API. Currently not implemented.
         """
         pass
+
+
+def get_mind(
+    database_client: Database,
+    qdrant_client: Qdrant,
+    openai_client: OpenAIClient,
+    pagerduty_client: PagerdutyClient,
+    logger: Logger,
+    file_system: FileSystem,
+) -> Mind:
+    """
+    Get Mind Class Instance
+    """
+    return Mind(
+        database_client,
+        qdrant_client,
+        openai_client,
+        pagerduty_client,
+        logger,
+        file_system,
+    )

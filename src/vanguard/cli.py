@@ -34,18 +34,40 @@ def main():
 
 
 @main.command(help="Load documentation into the RAG")
-def load(name):
-    LoadCommand().run(name)
+@click.option(
+    "--dir_path",
+    required=True,
+    type=click.Path(exists=True, file_okay=False, dir_okay=True),
+    help="Path to the directory containing documentation.",
+)
+@click.option(
+    "--team_name",
+    required=True,
+    type=str,
+    help="Name of the team responsible for the documentation.",
+)
+def load(dir_path: str, team_name: str):
+    LoadCommand().run(dir_path, team_name)
+
+
+@main.command(help="Send a PagerDuty Alert")
+@click.option("--summary", required=True, type=str, help="Summary of the alert.")
+@click.option(
+    "--severity",
+    required=True,
+    type=click.Choice(["info", "warning", "error", "critical"]),
+    help="Severity of the alert.",
+)
+@click.option(
+    "--team", required=True, type=str, help="Team to which the alert should be routed."
+)
+def alert(summary: str, severity: str, team: str):
+    AlertCommand().run(summary, severity, team)
 
 
 @main.command(help="Run the AI Assistant")
 def assistant():
     AssistantCommand().run()
-
-
-@main.command(help="Send a PagerDuty Alert")
-def alert():
-    AlertCommand().run()
 
 
 if __name__ == "__main__":

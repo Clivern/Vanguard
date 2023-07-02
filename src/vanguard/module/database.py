@@ -219,7 +219,7 @@ class Database:
         ]
 
 
-def get_database(path: str) -> Database:
+def get_database_client(path: str) -> Database:
     """Create and return a Database instance.
 
     Args:
