@@ -52,3 +52,10 @@ Usage:
 
       $ pyvanguard alert --summary "Host clivern.ams01 is down" --severity critical --team clivern
 
+* Query the RAG
+
+.. code-block::
+
+      $ pyvanguard query --text "Host clivern.ams01 is Down" --kind "" --team clivern --limit 2
+      $ pyvanguard query --text "Host clivern.ams01 is Down" --kind "team_document" --team clivern --limit 2
+      $ pyvanguard query --text "Host clivern.ams01 is Down" --kind "pagerduty_alert" --team clivern --limit 2
