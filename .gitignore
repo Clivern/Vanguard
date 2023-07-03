@@ -55,4 +55,4 @@ MANIFEST
 venv/
 build/
 
-vanguard.db
+pyvanguard.db

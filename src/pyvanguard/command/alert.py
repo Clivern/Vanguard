@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2025
+# Copyright (c) 2025 Clivern
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 import os
-from vanguard.module import (
+from pyvanguard.module import (
     get_logger,
     get_database_client,
     get_openai_client,
@@ -31,7 +31,7 @@ from vanguard.module import (
     success,
     error,
 )
-from vanguard.core import get_mind
+from pyvanguard.core import get_mind
 
 
 class AlertCommand:

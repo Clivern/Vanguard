@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2025
+# Copyright (c) 2025 Clivern
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,4 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .mind import get_mind
+
+class AssistantCommand:
+    def __init__(self):
+        pass
+
+    def run(self):
+        pass

@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2025
+# Copyright (c) 2025 Clivern
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -103,6 +103,6 @@ if __name__ == "__main__":
     fs = FileSystem()
     print(
         fs.read_documents_from_directory(
-            "/Users/ahmetwal/space/personal/vanguard/testdocs", [".md"]
+            "/Users/ahmetwal/space/personal/pyvanguard/testdocs", [".md"]
         )
     )

@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2025
+# Copyright (c) 2025 Clivern
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,14 +22,14 @@
 
 import click
 
-from vanguard import __version__
-from vanguard.command import LoadCommand, AlertCommand, AssistantCommand, QueryCommand
+from pyvanguard import __version__
+from pyvanguard.command import LoadCommand, AlertCommand, AssistantCommand, QueryCommand
 
 
 @click.group(help="🐺 Oncall AI Assistant.")
 @click.version_option(version=__version__, help="Show the current version")
 def main():
-    """Main command group for Vanguard CLI."""
+    """Main command group for PyVanguard CLI."""
     pass
 
 

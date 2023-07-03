@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2025
+# Copyright (c) 2025 Clivern
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,21 +21,22 @@
 # SOFTWARE.
 
 import os
-from vanguard.module import (
+from pyvanguard.module import (
     get_logger,
     get_database_client,
     get_openai_client,
     get_pagerduty_client,
     get_qdrant_client,
     get_file_system,
+    success,
     error,
 )
-from vanguard.core import get_mind
+from pyvanguard.core import get_mind
 
 
-class QueryCommand:
+class LoadCommand:
     """
-    Query the RAG for Relevant Data
+    Load Team Documentation into RAG Command
     """
 
     def __init__(self):
@@ -50,10 +51,10 @@ class QueryCommand:
             get_file_system(),
         )
 
-    def run(self, text: str, kind: str, team: str, limit: int):
+    def run(self, dir_path: str, team_name: str):
         try:
             self._mind.setup()
-            out = self._mind.get_relevant_data(text, kind, team, int(limit))
-            print(out)
+            self._mind.store_documents(dir_path, team_name, {})
+            success("Documentation loaded successfully!")
         except Exception as e:
             error(f"raised error is {e}")

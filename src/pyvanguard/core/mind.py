@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2025
+# Copyright (c) 2025 Clivern
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -24,17 +24,17 @@ import uuid
 import json
 from typing import Dict, Any, List
 from datetime import datetime
-from vanguard.module.database import Database
-from vanguard.module.qdrant import Qdrant
-from vanguard.module.openai import OpenAIClient
-from vanguard.module.pagerduty import PagerdutyClient
-from vanguard.module.logger import Logger
-from vanguard.module.file_system import FileSystem
+from pyvanguard.module.database import Database
+from pyvanguard.module.qdrant import Qdrant
+from pyvanguard.module.openai import OpenAIClient
+from pyvanguard.module.pagerduty import PagerdutyClient
+from pyvanguard.module.logger import Logger
+from pyvanguard.module.file_system import FileSystem
 
 
 class Mind:
     """
-    Core Functionality of Vanguard
+    Core Functionality of PyVanguard
     """
 
     def __init__(
@@ -73,7 +73,7 @@ class Mind:
         """
         self._database_client.connect()
         self._database_client.migrate()
-        self._qdrant_client.create_collection_if_not_exist("vanguard")
+        self._qdrant_client.create_collection_if_not_exist("pyvanguard")
 
     def store_documents(self, path: str, team: str, meta: Dict[str, Any]) -> bool:
         """
@@ -114,7 +114,7 @@ class Mind:
                 embeddings.append(response.data[0].embedding)
                 metas.append({"team": team, "kind": "team_document"})
 
-        self._qdrant_client.insert("vanguard", embeddings, ids, metas)
+        self._qdrant_client.insert("pyvanguard", embeddings, ids, metas)
 
         return True
 
@@ -141,7 +141,7 @@ class Mind:
         response = self._pagerduty_client.trigger_alert(
             summary,
             meta.get("severity", "error"),
-            meta.get("source", "vanguard"),
+            meta.get("source", "pyvanguard"),
             meta.get("component", "#"),
             meta.get(
                 "links",
@@ -165,7 +165,7 @@ class Mind:
                     {
                         "dedup_key": response["dedup_key"],
                         "severity": meta.get("severity", "error"),
-                        "source": meta.get("source", "vanguard"),
+                        "source": meta.get("source", "pyvanguard"),
                         "component": meta.get("component", "#"),
                         "links": meta.get(
                             "links",
@@ -190,7 +190,7 @@ class Mind:
                 "team": team,
                 "summary": summary,
                 "severity": meta.get("severity", "error"),
-                "source": meta.get("source", "vanguard"),
+                "source": meta.get("source", "pyvanguard"),
                 "component": meta.get("component", "#"),
                 "dedup_key": response["dedup_key"],
                 "custom_details": meta.get("custom_details", {"vid": id}),
@@ -202,7 +202,7 @@ class Mind:
         response = self._openai_client.create_embedding([f"pagerduty alert {data}"])
 
         self._qdrant_client.insert(
-            "vanguard",
+            "pyvanguard",
             [response.data[0].embedding],
             [id],
             [{"team": team, "kind": "pagerduty_alert"}],
@@ -291,7 +291,7 @@ class Mind:
             metadata = {"team": team, "kind": kind}
 
         result = self._qdrant_client.search(
-            "vanguard", response.data[0].embedding, metadata, limit
+            "pyvanguard", response.data[0].embedding, metadata, limit
         )
 
         output = []

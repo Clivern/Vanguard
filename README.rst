@@ -2,14 +2,14 @@
   :width: 700
   :alt: Alternative text
 
-.. image:: https://github.com/Clivern/Vanguard/actions/workflows/ci.yml/badge.svg?branch=main
+.. image:: https://github.com/Clivern/PyVanguard/actions/workflows/ci.yml/badge.svg?branch=main
     :alt: Build Status
-    :target: https://github.com/Clivern/Vanguard/actions/workflows/ci.yml
+    :target: https://github.com/Clivern/PyVanguard/actions/workflows/ci.yml
 
 |
 
 ========
-Vanguard
+PyVanguard
 ========
 
 OnCall AI Assistant, Your Intelligent Incident Resolution Partner!
@@ -36,19 +36,19 @@ Usage:
       export QDRANT_DB_URL=....
       export QDRANT_DB_API_KEY=....
       export PAGERDUTY_INTEGRATION_KEY=....
-      export SQLITE_DB_PATH=/root/vanguard.db
+      export SQLITE_DB_PATH=/root/pyvanguard.db
 
 
 * Load The team documents.
 
 .. code-block::
 
-      $ vanguard load --dir_path /root/vanguard/testdocs --team_name clivern
+      $ pyvanguard load --dir_path /root/pyvanguard/testdocs --team_name clivern
 
 
 * Trigger a Pagerduty Alert.
 
 .. code-block::
 
-      $ vanguard alert --summary "Host clivern.ams01 is down" --severity critical --team clivern
+      $ pyvanguard alert --summary "Host clivern.ams01 is down" --severity critical --team clivern
 

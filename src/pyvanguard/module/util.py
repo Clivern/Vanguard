@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2025
+# Copyright (c) 2025 Clivern
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from rich.console import Console
 
-class ConfigCommand:
-    def __init__(self):
-        pass
 
-    def run(self):
-        pass
+def success(message: str):
+    """
+    Print a success message with green formatting.
+
+    Args:
+        message (str): The success message to be printed.
+    """
+    Console().print(f"[bold green][SUCCESS][/bold green] {message}")
+
+
+def error(message: str):
+    """
+    Print an error message with red formatting.
+
+    Args:
+        message (str): The error message to be printed.
+    """
+    Console().print(f"[bold red][ERROR][/bold red] {message}")
