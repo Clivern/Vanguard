@@ -8,9 +8,9 @@
 
 |
 
-========
+===========
 PyVanguard
-========
+===========
 
 OnCall AI Assistant, Your Intelligent Incident Resolution Partner!
 
