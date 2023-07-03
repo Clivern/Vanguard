@@ -22,5 +22,4 @@
 
 from .alert import AlertCommand
 from .load import LoadCommand
-from .assistant import AssistantCommand
 from .query import QueryCommand

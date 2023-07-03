@@ -23,10 +23,12 @@
 import click
 
 from pyvanguard import __version__
-from pyvanguard.command import LoadCommand, AlertCommand, AssistantCommand, QueryCommand
+from pyvanguard.command import LoadCommand, AlertCommand, QueryCommand
 
 
-@click.group(help="🐺 Oncall AI Assistant.")
+@click.group(
+    help="🐺 Oncall AI Assistant, Your Intelligent Incident Resolution Partner!"
+)
 @click.version_option(version=__version__, help="Show the current version")
 def main():
     """Main command group for PyVanguard CLI."""
@@ -92,11 +94,6 @@ def alert(summary: str, severity: str, team: str):
 )
 def query(text: str, kind: str, team: str, limit: int):
     QueryCommand().run(text, kind, team, limit)
-
-
-@main.command(help="Run the AI Assistant")
-def assistant():
-    AssistantCommand().run()
 
 
 if __name__ == "__main__":
