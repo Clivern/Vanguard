@@ -20,7 +20,40 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .alert import AlertCommand
-from .load import LoadCommand
-from .assistant import AssistantCommand
-from .query import QueryCommand
+import os
+from vanguard.module import (
+    get_logger,
+    get_database_client,
+    get_openai_client,
+    get_pagerduty_client,
+    get_qdrant_client,
+    get_file_system,
+    error,
+)
+from vanguard.core import get_mind
+
+
+class QueryCommand:
+    """
+    Query the RAG for Relevant Data
+    """
+
+    def __init__(self):
+        self._mind = get_mind(
+            get_database_client(os.getenv("SQLITE_DB_PATH")),
+            get_qdrant_client(
+                os.getenv("QDRANT_DB_URL"), os.getenv("QDRANT_DB_API_KEY")
+            ),
+            get_openai_client(os.getenv("OPENAI_API_KEY")),
+            get_pagerduty_client(os.getenv("PAGERDUTY_INTEGRATION_KEY")),
+            get_logger(),
+            get_file_system(),
+        )
+
+    def run(self, text: str, kind: str, team: str, limit: int):
+        try:
+            self._mind.setup()
+            out = self._mind.get_relevant_data(text, kind, team, int(limit))
+            print(out)
+        except Exception as e:
+            error(f"raised error is {e}")

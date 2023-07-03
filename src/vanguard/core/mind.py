@@ -91,7 +91,9 @@ class Mind:
         content using OpenAI, and stores both the documents and their embeddings in the database
         and Qdrant respectively.
         """
-        documents = self._file_system.read_documents_from_directory(path, [".txt", ".md"])
+        documents = self._file_system.read_documents_from_directory(
+            path, [".txt", ".md"]
+        )
         ids = []
         embeddings = []
         metas = []
@@ -266,7 +268,9 @@ class Mind:
         """
         return self._database_client.get_alerts_by_team(team)
 
-    def get_relevant_data(self, text: str, kind: str) -> str:
+    def get_relevant_data(
+        self, text: str, kind: str, team: str, limit: int
+    ) -> List[Dict[str, Any]]:
         """
         Retrieve relevant data based on input text.
 
@@ -279,7 +283,44 @@ class Mind:
         This method should implement logic to find relevant data based on
         input text using Qdrant or other means. Currently not implemented.
         """
-        pass
+        response = self._openai_client.create_embedding(text)
+
+        if kind == "" or kind is None:
+            metadata = {"team": team}
+        else:
+            metadata = {"team": team, "kind": kind}
+
+        result = self._qdrant_client.search(
+            "vanguard", response.data[0].embedding, metadata, limit
+        )
+
+        output = []
+
+        for item in result:
+            document = self._database_client.get_document_by_id(item.get("id"))
+            alert = self._database_client.get_alert_by_id(item.get("id"))
+
+            if document is not None:
+                output.append(
+                    {
+                        "id": item.get("id"),
+                        "score": item.get("score"),
+                        "data": document,
+                        "kind": "team_document",
+                    }
+                )
+
+            if alert is not None:
+                output.append(
+                    {
+                        "id": item.get("id"),
+                        "score": item.get("score"),
+                        "data": alert,
+                        "kind": "pagerduty_alert",
+                    }
+                )
+
+        return output
 
     def summarize_relevant_data(self, prompt: str, data: str) -> str:
         """

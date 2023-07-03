@@ -23,7 +23,7 @@
 import click
 
 from vanguard import __version__
-from vanguard.command import LoadCommand, AlertCommand, AssistantCommand
+from vanguard.command import LoadCommand, AlertCommand, AssistantCommand, QueryCommand
 
 
 @click.group(help="🐺 Oncall AI Assistant.")
@@ -63,6 +63,35 @@ def load(dir_path: str, team_name: str):
 )
 def alert(summary: str, severity: str, team: str):
     AlertCommand().run(summary, severity, team)
+
+
+@main.command(help="Query the RAG system")
+@click.option(
+    "--text",
+    required=True,
+    type=str,
+    help="The query text to search in the RAG system.",
+)
+@click.option(
+    "--kind",
+    required=True,
+    type=str,
+    help="The kind of query.",
+)
+@click.option(
+    "--team",
+    required=True,
+    type=str,
+    help="Name of the team whose documentation/pages to search.",
+)
+@click.option(
+    "--limit",
+    required=True,
+    type=int,
+    help="The maximum number of results to return.",
+)
+def query(text: str, kind: str, team: str, limit: int):
+    QueryCommand().run(text, kind, team, limit)
 
 
 @main.command(help="Run the AI Assistant")
