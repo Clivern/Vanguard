@@ -16,7 +16,9 @@ OnCall AI Assistant, Your Intelligent Incident Resolution Partner!
 
 Meet OnCall AI Assistant, your friendly helper for tackling incidents quickly and efficiently. This smart tool makes resolving issues a breeze by tapping into your team's documents and learning from past incidents.
 
+
 Features:
+---------
 
 * Smart Insights: It uses your team's knowledge base to provide solutions that fit your unique workflows and practices.
 * Learn from the Past: By looking at how previous incidents were handled, it suggests tried-and-true methods to solve current problems.
