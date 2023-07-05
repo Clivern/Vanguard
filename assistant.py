@@ -31,7 +31,7 @@ def generate_alert():
     return {
         "service": random.choice(services),
         "severity": random.choice(severities),
-        "message": f"Error in {random.choice(services)} service"
+        "message": f"Error in {random.choice(services)} service",
     }
 
 
@@ -41,7 +41,7 @@ st.title("OnCall Alert Dashboard")
 # Main alert
 main_alert = generate_alert()
 st.error(f"🚨 ALERT: {main_alert['service']} - {main_alert['severity']}")
-st.write(main_alert['message'])
+st.write(main_alert["message"])
 
 # Documentation
 st.header("How to Handle This Alert")

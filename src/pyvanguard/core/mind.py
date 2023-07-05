@@ -322,22 +322,6 @@ class Mind:
 
         return output
 
-    def summarize_relevant_data(self, prompt: str, data: str) -> str:
-        """
-        Summarize relevant data using OpenAI's API based on a given prompt.
-
-        Args:
-            prompt (str): The prompt guiding how to summarize data.
-            data (str): The data that needs summarization.
-
-        Returns:
-            str: The summarized version of the provided data or an empty string if an error occurs.
-
-        This method should implement logic to summarize relevant data using
-        OpenAI's API. Currently not implemented.
-        """
-        pass
-
 
 def get_mind(
     database_client: Database,

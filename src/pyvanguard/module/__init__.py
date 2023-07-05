@@ -28,3 +28,4 @@ from .qdrant import get_qdrant_client
 from .file_system import get_file_system
 from .util import success
 from .util import error
+from .jira import get_jira_client

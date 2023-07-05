@@ -21,3 +21,4 @@
 # SOFTWARE.
 
 from .mind import get_mind
+from .assistant import get_assistant
